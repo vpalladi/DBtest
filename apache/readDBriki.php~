@@ -1,0 +1,54 @@
+<html>
+<style>
+body {
+    background-color: #CCCCCC;
+}
+</style>
+
+<body>
+
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors','On');
+?>
+
+<?php
+
+$host = "localhost";
+//$host = "127.0.0.1";
+$user = "root";
+$pass = "vito8a82";
+$db = "mysql";
+
+echo "my  server  is  " . $host . "<br>";
+
+echo "DB : " . $db . "<br>";
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ( $conn->connect_error ) {
+    die(">>> Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully";
+
+$sql = "SHOW TABLES";
+//$result = "test";
+
+//$arr = array( 1 => "b",
+//5 => 3.44);
+//echo "<br>";
+//var_dump($arr);
+
+$result = mysqli_query($conn, $sql);
+while ($row = $result->fetch_row()) {
+    //var_dump($row);
+    echo "<br>" . $row[0];
+}
+
+
+$conn->close();
+
+?>
+
+</body>
+</html>
